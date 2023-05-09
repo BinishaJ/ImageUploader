@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      fetch("/imagelist")
+        .then((response) => response.json())
+        .then((imageUrls) => {
+          const container = document.getElementById("image-container");
+
+          imageUrls.forEach((url) => {
+            const img = document.createElement("img");
+            img.src = url;
+            img.width = "200";
+            img.height = "200";
+            container.appendChild(img);
+            const br = document.createElement("br");
+            container.appendChild(br);
+          });
+        });
+    </script>
+  </head>
+  <body>
+    <h1>Image Gallery</h1>
+    <div id="image-container"></div>
+    <button onclick="window.location.href='/'">Back to Home</button>
+  </body>
+</html>
