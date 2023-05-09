@@ -1,6 +1,4 @@
 const multer = require("multer");
-// const Image = require("../models/Image");
-const fs = require("fs");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -14,9 +12,18 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const uploadImage = (req, res, next) => {
+  if (!req.file)
+    return res.status(400).send(`No file Uploaded <br>
+    <button onclick="window.location.href='/images'">Show Images</button>
+    <button onclick="window.location.href='/'">Back to Home</button>
+    `);
   console.log(req.file);
-  res.send("Uploaded");
-  // res.redirect("/");
+  res.send(
+    `Uploaded <br>
+    <button onclick="window.location.href='/images'">Show Images</button>
+    <button onclick="window.location.href='/'">Back to Home</button>
+    `
+  );
 };
 
 module.exports = { upload, uploadImage };

@@ -12,9 +12,10 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", rootRoute);
 app.use("/upload", uploadRoute);
-app.use("/uploads", express.static("uploads"));
 app.use("/imagelist", imageRoute);
 app.use("/images", images);
+
+app.use("/uploads", express.static("uploads"));
 
 app.all("*", (req, res) => {
   res.status(404).send("Error 404! Not Found");
